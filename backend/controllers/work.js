@@ -4,4 +4,7 @@ exports.sayhi=(req,res)=>{
    res.send("hleeol sir")
    
 }
+exports.setwork=(req,res)=>{
+   
+}
 
