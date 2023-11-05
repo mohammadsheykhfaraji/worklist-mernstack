@@ -14,7 +14,7 @@ const Routers=()=>{
             <Routes>
               
                 <Route path='/' exact element={<Home/>}/>
-                <Route path='/aboutus' exact element={<Aboutus/>}/>
+                <Route path='/aboutus'  element={<Aboutus/>}/>
          
             </Routes>
         </BrowserRouter>
