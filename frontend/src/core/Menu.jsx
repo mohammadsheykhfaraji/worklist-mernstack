@@ -5,9 +5,10 @@ import { Bars3Icon, XMarkIcon } from '@heroicons/react/24/outline'
 
 
 const navigation = [
-    { name: 'درباره ما', href: '#' },
-    { name: 'داشبورد', href: '#' },
-  
+   
+    { name: 'داشبورد', href: '#'  },
+    { name: 'درباره ما', href:'/aboutus'},
+    
   ]
 
 
@@ -42,13 +43,13 @@ export default function Menu() {
           </div>
           <div className="hidden lg:flex lg:gap-x-12">
              {navigation.map((item) => (
-              <Link   key={item.name}  to={item.href} className="text-sm font-bold leading-6 text-gray-900">
+              <Link   key={item.name}  to={item.href} className="text-xl font-bold leading-6 text-gray-900">
                 {item.name}
               </Link>
            ))}
           </div>
           <div className="hidden lg:flex lg:flex-1 lg:justify-end">
-            <Link to='/signin' className="text-sm font-bold leading-6 text-gray-900">
+            <Link to='/signin' className="text-xl font-bold  leading-6 text-gray-900">
               ورود 
             </Link>
           </div>

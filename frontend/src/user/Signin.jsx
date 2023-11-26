@@ -5,80 +5,76 @@ export default function Example() {
     return (
       <>
       
-        <div className="flex min-h-full flex-1 flex-col justify-center px-6 py-12 lg:px-8">
-          <div className="sm:mx-auto sm:w-full sm:max-w-sm">
-            <svg xmlns="http://www.w3.org/2000/svg" width="80" height="80" fill="currentColor"  className="bi bi-person-circle mx-auto w-auto text-blue-900" viewBox="0 0 16 16">
+      <div className="min-h-screen bg-gray-100 flex flex-col justify-center py-12 sm:px-6 lg:px-8">
+    <div className="sm:mx-auto sm:w-full sm:max-w-md">
+ 
+               <svg xmlns="http://www.w3.org/2000/svg" width="80" height="80" fill="currentColor"  className="bi bi-person-circle mx-auto w-auto text-blue-900" viewBox="0 0 16 16">
                     <path d="M11 6a3 3 0 1 1-6 0 3 3 0 0 1 6 0z" />
                     <path  d="M0 8a8 8 0 1 1 16 0A8 8 0 0 1 0 8zm8-7a7 7 0 0 0-5.468 11.37C3.242 11.226 4.805 10 8 10s4.757 1.225 5.468 2.37A7 7 0 0 0 8 1z" />
                 </svg>
-                            
-            <h2 className="mt-10 text-center text-2xl font-bold leading-9 tracking-tight text-gray-900">
-              لطفا ایمیل و رمز عبور را وارد کنید
-            </h2>
-          </div>
-  
-          <div className="mt-10 sm:mx-auto sm:w-full sm:max-w-sm">
-            <form className="space-y-6" >
-              <div>
-                <label htmlFor="email" className="block text-sm font-medium leading-6 text-gray-900">
-                  ایمیل 
-                </label>
-                <div className="mt-2">
-                  <input
-                    id="email"
-                    name="email"
-                    type="email"
-                    autoComplete="email"
-                    required
-                    className="block w-full rounded-md border-0 py-1.5 text-gray-900 shadow-sm ring-1 ring-inset ring-gray-300 placeholder:text-gray-400 focus:ring-2 focus:ring-inset focus:ring-indigo-600 sm:text-sm sm:leading-6"
-                  />
-                </div>
-              </div>
-  
-              <div>
-                <div className="flex items-center justify-between">
-                  <label htmlFor="password" className="block text-sm font-medium leading-6 text-gray-900">
-                    رمز عبور
-                  </label>
-                
-                </div>
-                <div className="mt-2">
-                  <input
-                    id="password"
-                    name="password"
-                    type="password"
-                    autoComplete="current-password"
-                    required
-                    className="block w-full rounded-md border-0 py-1.5 text-gray-900 shadow-sm ring-1 ring-inset ring-gray-300 placeholder:text-gray-400 focus:ring-2 focus:ring-inset focus:ring-indigo-600 sm:text-sm sm:leading-6"
-                  />
-                </div>
-                <div className="text-sm mt-1">
+        <h2 className="mt-6 text-center text-3xl font-extrabold text-gray-900">
+            لطفا وارد شوید
+        </h2>
+       
+    </div>
 
-                    <Link to='' className=" font-semibold text-indigo-600 hover:text-indigo-500 ">
-                      فراموشی رمز عبور
-                    </Link>
-                  </div>
-              </div>
-  
-              <div>
-                <button
-                  type="submit"
-                  className="flex w-full justify-center rounded-md bg-indigo-600 px-3 py-1.5 text-sm font-semibold leading-6 text-white shadow-sm hover:bg-indigo-500 focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-indigo-600"
-                >
-                  ورود
-                </button>
-              </div>
+    <div className="mt-8 sm:mx-auto sm:w-full sm:max-w-md">
+        <div className="bg-white py-8 px-4 shadow sm:rounded-lg sm:px-10">
+            <form className="space-y-6" action="#" method="POST">
+                <div>
+                    <label for="email" className="block text-sm font-medium text-gray-700">
+                        ایمیل
+                    </label>
+                    <div className="mt-1">
+                         <input id="email" name="email" type="email" autocomplete="email" 
+                            className="appearance-none rounded-md relative block w-full px-3 py-2 border border-gray-300 placeholder-gray-500 text-gray-900 focus:outline-none focus:ring-indigo-500 focus:border-indigo-500 focus:z-10 sm:text-sm"
+                            placeholder="لطفا ایمیل تون رو وارد کنید" required
+                            />
+                    </div>
+                </div>
+
+                <div>
+                    <label for="password" class="block text-sm font-medium text-gray-700">
+                        پسورد
+                    </label>
+                    <div className="mt-1">
+                        <input id="password" name="password" type="password" autocomplete="current-password" required
+                            className="appearance-none rounded-md relative block w-full px-3 py-2 border border-gray-300 placeholder-gray-500 text-gray-900 focus:outline-none focus:ring-indigo-500 focus:border-indigo-500 focus:z-10 sm:text-sm"
+                            placeholder="لطفا پسوردتون رو وارد کنید"/>
+                    </div>
+                </div>
+
+                <div class="flex items-center justify-between">
+               
+
+                    <div className="text-sm">
+                        <Link href="#" class="font-medium text-blue-600 hover:text-blue-500">
+                            رمزتون رو فراموش کرده اید؟
+                        </Link>
+                    </div>
+                </div>
+
+                <div>
+                    <button type="submit"
+                        className="group relative w-full flex justify-center py-2 px-4 border border-transparent text-sm font-medium rounded-md text-white bg-indigo-600 hover:bg-indigo-700 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-indigo-500">
+
+                        ورود
+                    </button>
+                </div>
+                <div class="flex items-center justify-between">
+               
+
+               <div className="text-sm">
+                   <Link to="/signup" class="font-medium text-blue-600 hover:text-blue-500">
+                       ایا قبلا ثبت نام نکرده اید؟؟
+                   </Link>
+               </div>
+           </div>
             </form>
-  
-            <p className="mt-10 text-center text-sm text-gray-500">
-               اکانتی ندارید؟ {' '}
-              <Link to='' className="font-semibold leading-6 text-indigo-600 hover:text-indigo-500">
-                 ثبت نام
-              </Link>
-              {' '}  کنید 
-            </p>
-          </div>
+       
         </div>
+    </div>
+</div>
       </>
     )
   }
