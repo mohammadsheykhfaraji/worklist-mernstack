@@ -1,11 +1,50 @@
-import React from "react"
-import { Link } from "react-router-dom"
+import React,{useState} from "react"
+import { Link,useNavigate } from "react-router-dom"
+import { signi } from "../auth";
 
 export default function Example() {
-    return (
-      <>
-      
-      <div className="min-h-screen bg-gray-100 flex flex-col justify-center py-12 sm:px-6 lg:px-8">
+
+
+
+
+
+  const [values,setValues]=useState({
+    email:'',
+    password:'',
+    error:'',
+    loading:'',
+    redirectrefrence:false,
+  });
+  const user={email:values.email,password:values.password,loading:values.loading,error:values.error,redirectrefrence:values.redirectrefrence};
+ 
+  
+const navigate = useNavigate();
+
+const clicksub=(e)=>{
+e.preventDefault();
+
+setValues({...values,error:'',loading:'loading...'});
+signi(user).then(async dataa=>{
+ const data=await dataa.json();
+ 
+
+if(dataa.status!==200){
+  setValues({...values,error:data.message,loading:''});
+
+}else if(dataa.status===200){
+  authenticate(data,()=>{
+    setValues({
+      ...values,
+       redirectrefrence:true,
+    });
+  })
+}
+});
+}
+
+const formsignin=()=>{
+  <>
+     <div className="min-h-screen bg-gray-100 flex flex-col justify-center py-12 sm:px-6 lg:px-8">
     <div className="sm:mx-auto sm:w-full sm:max-w-md">
  
                <svg xmlns="http://www.w3.org/2000/svg" width="80" height="80" fill="currentColor"  className="bi bi-person-circle mx-auto w-auto text-blue-900" viewBox="0 0 16 16">
@@ -75,6 +114,12 @@ export default function Example() {
         </div>
     </div>
 </div>
+  </>
+}
+    return (
+      <>
+      {formsignin()}
+   
       </>
     )
   }

@@ -1,10 +1,56 @@
-import React from "react"
+import React,{ useState } from "react"
 import { Link } from "react-router-dom"
+import { signu } from "../auth";
 
 export default function Signup() {
-    return (
-      <>
-      <div className="min-h-screen bg-gray-100 flex flex-col justify-center py-12 sm:px-6 lg:px-8">
+
+    const [values,setValues]=useState({
+        fullname:'',
+        email:'',
+        password:'',
+        confirmpassword:'',
+        error:'',
+        success:false,
+      });
+     
+      const user={fullname:values.fullname,email:values.email,password:values.password,confirmpassword:values.confirmpassword,success:values.success,error:values.error}
+    
+     const clicksub=(e)=>{
+      e.preventDefault();
+       setValues({...values,error:''});
+      signu(user).then(async dataa=>{
+        const data=await dataa.json();
+        if(dataa.status!==200){
+          setValues({...values,error:data.message,success:false});
+        }else if(dataa.status===200){
+          setValues({
+            ...values,
+            fullname:'',
+            email:'',
+            password:'',
+            confirmpassword:'',
+            error:'',
+            success:true,
+          });
+        }
+      });
+     }
+     
+       
+  
+  const showerror=()=>( 
+    <div className='alert alert-danger' style={{display: user.error ? '' : 'none'}} >
+    {user.error}
+    </div>    
+  );
+  const showloading=()=>(
+    user.loading && ( <div className='alert alert-info' style={{display: user.loading ? '' : 'none'}}></div>)
+  ); 
+
+  const formsignup =()=>{
+    return(
+        <>
+            <div className="min-h-screen bg-gray-100 flex flex-col justify-center py-12 sm:px-6 lg:px-8">
     <div className="sm:mx-auto sm:w-full sm:max-w-md">
        <svg xmlns="http://www.w3.org/2000/svg" width="80" height="80" fill="currentColor" class="bi bi-person-plus-fill mx-auto w-auto text-blue-900" viewBox="0 0 16 16">
             <path d="M1 14s-1 0-1-1 1-4 6-4 6 3 6 4-1 1-1 1zm5-6a3 3 0 1 0 0-6 3 3 0 0 0 0 6"/>
@@ -84,7 +130,15 @@ export default function Signup() {
         </div>
     </div>
 </div>
-      
+        </>
+    )
+  }
+
+
+    return (
+      <>
+  
+      {formsignup()}
       </>
     )
   }
