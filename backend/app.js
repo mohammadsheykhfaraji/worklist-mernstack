@@ -29,6 +29,7 @@ app.use(cors());
 
 //routing
 app.use("/api",require('./routers/work.js'));
+app.use("/api",require('./routers/auth.js'));
 
 
 

@@ -13,7 +13,7 @@ export default function Signup() {
         success:false,
       });
      
-      const user={fullname:values.fullname,email:values.email,password:values.password,confirmpassword:values.confirmpassword,success:values.success,error:values.error}
+      const user={fullname:values.fullname,email:values.email,password:values.password,success:values.success,error:values.error}
     
      const clicksub=(e)=>{
       e.preventDefault();
