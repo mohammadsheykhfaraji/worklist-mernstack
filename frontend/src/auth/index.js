@@ -1,45 +1,42 @@
 import axios from "axios";
-import { API } from '../config';
+import { API , handleApiError } from '../config';
 
 
 export const signu=async(user)=>{
+  try {
+     const temp= await axios.post(`${API}/signup`,user ,{
+      headers: { 'Content-Type': 'application/json' }
+    });
+    const response =temp.data;
+    return { response , error:null };
+  } catch (error) {
+    return handleApiError(error);
+  }
 
-      return await axios.post(`${API}/signup`,user ,{
-          headers: { 'Content-Type': 'application/json' }
-        }).then(async resp=>{
-          console.log("hellossss");
-          return await resp;
-        }).catch(err=>{
-         
-          console.log(err);
-        });
-    
-    // return fetch(`${API}/signup`,{
-    //     method: 'POST',
-    //    headers: { 'Content-Type': 'application/json' },
-    //    body: JSON.stringify( user ),
-      
-    //  }).then(async resp=>{
-      
-    //    return await resp;
-    //  }).catch(err=>{
-    //   console.log(err);
-    //  });
  }
 
- export const  signi=(user)=>{
-    
-  return fetch(`${API}/signin`,{
-      method: 'POST',
-     headers: { 'Content-Type': 'application/json' },
-     body: JSON.stringify( user ),
-    
-   }).then(async resp=>{
-    
-     return await resp;
-   }).catch(err=>{
-     console.log(err)
+ export const  signi=async(user)=>{
+  try {
+    const temp= await axios.post(`${API}/signin`,user ,{
+     headers: { 'Content-Type': 'application/json' }
    });
+   const response =temp.data;
+   return { response , error:null };
+ } catch (error) {
+   return handleApiError(error);
+ }
+    
+  // return fetch(`${API}/signin`,{
+  //     method: 'POST',
+  //    headers: { 'Content-Type': 'application/json' },
+  //    body: JSON.stringify( user ),
+    
+  //  }).then(async resp=>{
+    
+  //    return await resp;
+  //  }).catch(err=>{
+  //    console.log(err)
+  //  });
 }
 
 export const authenticate=(data,next)=>{
@@ -63,3 +60,4 @@ export const signout=async (next)=>{
   }
  
 }
+

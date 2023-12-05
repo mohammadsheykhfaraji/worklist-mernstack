@@ -18,13 +18,14 @@ export default function Signup() {
      const clicksub=(e)=>{
       e.preventDefault();
        setValues({...values,error:''});
-      signu(user).then(async dataa=>{
-        console.log(dataa);
+      signu(user).then(async response=>{
+        console.log(response);
+      
        
-        if(dataa.code==="ERR_BAD_REQUEST"){
-            const data1=await dataa.response.data;
-          setValues({...values,error:data1.message,success:false});
-        }else if(dataa.status===200){
+        if(response.error){
+          
+          setValues({...values,error:response.error,success:false});
+        }else if(response.response){
           setValues({
             ...values,
             fullname:'', 
@@ -41,28 +42,34 @@ export default function Signup() {
        
   
   const showerror=()=>( 
-    <div className='alert alert-danger' style={{display: user.error ? '' : 'none'}} >
-    {user.error}
-    </div>    
+    <div className="bg-red-100 border border-red-400 text-red-700 px-4 py-3 mb-8 rounded relative "  style={{display: user.error ? '' : 'none'}} role="alert">
+        {user.error}
+    </div>
+    
   );
   const showsuccess=()=>(
-    <div className='alert alert-success' style={{display:user.success?'':'none'}} >
-    اکانت ایجاد شد لطفا لاگین کنید
+    <div className="bg-green-100 border border-green-400 text-green-700 px-4 py-3 mb-8 rounded relative "  style={{display:user.success?'':'none'}} role="alert">
+             اکانت ایجاد شد لطفا لاگین کنید
     </div>
+   
 );  
 
   const formsignup =()=>{
     return(
         <>
-            <div className="min-h-screen bg-gray-100 flex flex-col justify-center py-12 sm:px-6 lg:px-8">
-    <div className="sm:mx-auto sm:w-full sm:max-w-md">
-       <svg xmlns="http://www.w3.org/2000/svg" width="80" height="80" fill="currentColor" className="bi bi-person-plus-fill mx-auto w-auto text-blue-900" viewBox="0 0 16 16">
-            <path d="M1 14s-1 0-1-1 1-4 6-4 6 3 6 4-1 1-1 1zm5-6a3 3 0 1 0 0-6 3 3 0 0 0 0 6"/>
-            <path  d="M13.5 5a.5.5 0 0 1 .5.5V7h1.5a.5.5 0 0 1 0 1H14v1.5a.5.5 0 0 1-1 0V8h-1.5a.5.5 0 0 1 0-1H13V5.5a.5.5 0 0 1 .5-.5"/>
-        </svg>
+        
+        <div className="min-h-screen bg-gray-100 flex flex-col justify-center py-12 sm:px-6 lg:px-8">
 
         {showerror()}
         {showsuccess()}
+
+            <div className="sm:mx-auto sm:w-full sm:max-w-md">
+            <svg xmlns="http://www.w3.org/2000/svg" width="80" height="80" fill="currentColor" className="bi bi-person-plus-fill mx-auto w-auto text-blue-900" viewBox="0 0 16 16">
+                    <path d="M1 14s-1 0-1-1 1-4 6-4 6 3 6 4-1 1-1 1zm5-6a3 3 0 1 0 0-6 3 3 0 0 0 0 6"/>
+                    <path  d="M13.5 5a.5.5 0 0 1 .5.5V7h1.5a.5.5 0 0 1 0 1H14v1.5a.5.5 0 0 1-1 0V8h-1.5a.5.5 0 0 1 0-1H13V5.5a.5.5 0 0 1 .5-.5"/>
+                </svg>
+
+            
              
         <h2 className="mt-6 text-center text-3xl font-extrabold text-gray-900">
             لطفا ثبت نام کنید

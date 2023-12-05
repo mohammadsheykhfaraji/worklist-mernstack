@@ -1,4 +1,7 @@
 const User=require('../models/user');
+const bcrypt=require('bcryptjs');
+const jwt=require("jsonwebtoken");//////////for token create
+// const {expressjwt}=require('express-jwt');////for auth
 
 exports.signin=async(req,res)=>{
     try {
@@ -9,7 +12,7 @@ exports.signin=async(req,res)=>{
       const isEqual = await bcrypt.compare(password, user.password);
       
       if (isEqual) {
-    
+       
           const token = jwt.sign(
               {
                   user: {
@@ -32,8 +35,8 @@ exports.signin=async(req,res)=>{
       throw err;
     }
    
-    } catch (error) {
-        return res.status(400).json(error)
+    } catch (err) {
+        return res.status(400).json({message:err})
     }
    
    

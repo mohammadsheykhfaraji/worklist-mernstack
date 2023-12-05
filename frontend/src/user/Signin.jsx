@@ -21,15 +21,13 @@ const clicksub=(e)=>{
         e.preventDefault();
 
         setValues({...values,error:'',loading:'loading...'});
-        signi(user).then(async dataa=>{
-            const data=await dataa.json();
-            
+        signi(user).then(async response=>{
+           console.log(response);
+            if(response.error){
+            setValues({...values,error:response.error,loading:''});
 
-            if(dataa.status!==200){
-            setValues({...values,error:data.message,loading:''});
-
-            }else if(dataa.status===200){
-                authenticate(data,()=>{
+            }else if(response.response){
+                authenticate(response.response,()=>{
                     setValues({
                     ...values,
                     redirectrefrence:true,
