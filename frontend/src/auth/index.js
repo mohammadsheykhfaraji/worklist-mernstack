@@ -1,13 +1,16 @@
+import axios from "axios";
 import { API } from '../config';
 
 
 export const signu=async(user)=>{
 
-      return await axios.post(`${API}/signup`,user,{
+      return await axios.post(`${API}/signup`,user ,{
           headers: { 'Content-Type': 'application/json' }
         }).then(async resp=>{
+          console.log("hellossss");
           return await resp;
         }).catch(err=>{
+         
           console.log(err);
         });
     

@@ -19,13 +19,15 @@ export default function Signup() {
       e.preventDefault();
        setValues({...values,error:''});
       signu(user).then(async dataa=>{
-        const data=await dataa.json();
-        if(dataa.status!==200){
-          setValues({...values,error:data.message,success:false});
+        console.log(dataa);
+       
+        if(dataa.code==="ERR_BAD_REQUEST"){
+            const data1=await dataa.response.data;
+          setValues({...values,error:data1.message,success:false});
         }else if(dataa.status===200){
           setValues({
             ...values,
-            fullname:'',
+            fullname:'', 
             email:'',
             password:'',
             confirmpassword:'',
@@ -43,19 +45,24 @@ export default function Signup() {
     {user.error}
     </div>    
   );
-  const showloading=()=>(
-    user.loading && ( <div className='alert alert-info' style={{display: user.loading ? '' : 'none'}}></div>)
-  ); 
+  const showsuccess=()=>(
+    <div className='alert alert-success' style={{display:user.success?'':'none'}} >
+    اکانت ایجاد شد لطفا لاگین کنید
+    </div>
+);  
 
   const formsignup =()=>{
     return(
         <>
             <div className="min-h-screen bg-gray-100 flex flex-col justify-center py-12 sm:px-6 lg:px-8">
     <div className="sm:mx-auto sm:w-full sm:max-w-md">
-       <svg xmlns="http://www.w3.org/2000/svg" width="80" height="80" fill="currentColor" class="bi bi-person-plus-fill mx-auto w-auto text-blue-900" viewBox="0 0 16 16">
+       <svg xmlns="http://www.w3.org/2000/svg" width="80" height="80" fill="currentColor" className="bi bi-person-plus-fill mx-auto w-auto text-blue-900" viewBox="0 0 16 16">
             <path d="M1 14s-1 0-1-1 1-4 6-4 6 3 6 4-1 1-1 1zm5-6a3 3 0 1 0 0-6 3 3 0 0 0 0 6"/>
-            <path fill-rule="evenodd" d="M13.5 5a.5.5 0 0 1 .5.5V7h1.5a.5.5 0 0 1 0 1H14v1.5a.5.5 0 0 1-1 0V8h-1.5a.5.5 0 0 1 0-1H13V5.5a.5.5 0 0 1 .5-.5"/>
+            <path  d="M13.5 5a.5.5 0 0 1 .5.5V7h1.5a.5.5 0 0 1 0 1H14v1.5a.5.5 0 0 1-1 0V8h-1.5a.5.5 0 0 1 0-1H13V5.5a.5.5 0 0 1 .5-.5"/>
         </svg>
+
+        {showerror()}
+        {showsuccess()}
              
         <h2 className="mt-6 text-center text-3xl font-extrabold text-gray-900">
             لطفا ثبت نام کنید
@@ -67,22 +74,32 @@ export default function Signup() {
         <div className="bg-white py-8 px-4 shadow sm:rounded-lg sm:px-10">
             <form className="space-y-6" action="#" method="POST">
             <div>
-                    <label for="email" className="block text-sm font-medium text-gray-700">
+                    <label  className="block text-sm font-medium text-gray-700">
                         نام و نام خانوادگی
                     </label>
                     <div className="mt-1">
-                         <input id="email" name="email" type="email" autocomplete="email" 
+                         <input  id="fullname" name="fullname" type="fullname" 
+                          value={values.fullname}
+                          onChange={e => {
+                                      const val = e.target.value;
+                                      setValues(prevState => ({...prevState, fullname: val}));
+                                  }} 
                             className="appearance-none rounded-md relative block w-full px-3 py-2 border border-gray-300 placeholder-gray-500 text-gray-900 focus:outline-none focus:ring-indigo-500 focus:border-indigo-500 focus:z-10 sm:text-sm"
                             placeholder="لطفا نام و نام خانوادگی  خود را وارد کنید" required
                             />
                     </div>
                 </div>
                 <div>
-                    <label for="email" className="block text-sm font-medium text-gray-700">
+                    <label  className="block text-sm font-medium text-gray-700">
                         ایمیل
                     </label>
                     <div className="mt-1">
-                         <input id="email" name="email" type="email" autocomplete="email" 
+                         <input id="email" name="email" type="email"  
+                          value={values.email}
+                          onChange={e => {
+                                      const val = e.target.value;
+                                      setValues(prevState => ({...prevState, email: val}));
+                                  }} 
                             className="appearance-none rounded-md relative block w-full px-3 py-2 border border-gray-300 placeholder-gray-500 text-gray-900 focus:outline-none focus:ring-indigo-500 focus:border-indigo-500 focus:z-10 sm:text-sm"
                             placeholder="لطفا ایمیل خود را وارد کنید" required
                             />
@@ -90,21 +107,31 @@ export default function Signup() {
                 </div>
 
                 <div>
-                    <label for="password" class="block text-sm font-medium text-gray-700">
+                    <label  className="block text-sm font-medium text-gray-700">
                         رمز عبور
                     </label>
                     <div className="mt-1">
-                        <input id="password" name="password" type="password" autocomplete="current-password" required
+                        <input id="password" name="password" type="password"  required 
+                         value={values.password}
+                         onChange={e => {
+                                     const val = e.target.value;
+                                     setValues(prevState => ({...prevState, password: val}));
+                                 }} 
                             className="appearance-none rounded-md relative block w-full px-3 py-2 border border-gray-300 placeholder-gray-500 text-gray-900 focus:outline-none focus:ring-indigo-500 focus:border-indigo-500 focus:z-10 sm:text-sm"
                             placeholder="لطفا رمز عبور خود را وارد کنید"/>
                     </div>
                 </div>
                 <div>
-                    <label for="password" class="block text-sm font-medium text-gray-700">
+                    <label  className="block text-sm font-medium text-gray-700">
                         تکرار رمز عبور
                     </label>
                     <div className="mt-1">
-                        <input id="password" name="password" type="password" autocomplete="current-password" required
+                        <input id="confirmpassword" name="confirmpassword" type="password"  required
+                         value={values.confirmpassword}
+                         onChange={e => {
+                                     const val = e.target.value;
+                                     setValues(prevState => ({...prevState, confirmpassword: val}));
+                                 }} 
                             className="appearance-none rounded-md relative block w-full px-3 py-2 border border-gray-300 placeholder-gray-500 text-gray-900 focus:outline-none focus:ring-indigo-500 focus:border-indigo-500 focus:z-10 sm:text-sm"
                             placeholder="لطفا دوباره رمز عبور خود را وارد کنید"/>
                     </div>
@@ -112,15 +139,15 @@ export default function Signup() {
 
                
                 <div>
-                    <button type="submit"
+                    <button type="submit" onClick={clicksub}
                         className="group relative w-full flex justify-center py-2 px-4 border border-transparent text-sm font-medium rounded-md text-white bg-indigo-600 hover:bg-indigo-700 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-indigo-500">
 
                         ثبت نام
                     </button>
                 </div>
-                <div class="flex items-center justify-between">
+                <div className="flex items-center justify-between">
                     <div className="text-sm">
-                        <Link to="/signin" class="font-medium text-blue-600 hover:text-blue-500">
+                        <Link to="/signin" className="font-medium text-blue-600 hover:text-blue-500">
                             ایا قبلا ثبت نام کرده اید؟؟
                         </Link>
                     </div>

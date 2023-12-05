@@ -5,8 +5,8 @@ const {signin,signup,signout}=require('../controllers/auth')
 const router=express.Router();
 
 
-router.get('/signin', signin);
-router.get('/signup', signup);
+router.post('/signin', signin);
+router.post('/signup', signup);
 router.get('/signout', signout);
 
 

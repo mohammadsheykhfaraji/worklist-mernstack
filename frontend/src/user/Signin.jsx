@@ -1,11 +1,8 @@
 import React,{useState} from "react"
-import { Link,useNavigate } from "react-router-dom"
-import { signi } from "../auth";
+import { Link} from "react-router-dom"
+import { signi,authenticate } from "../auth";
 
-export default function Example() {
-
-
-
+export default function Signin() {
 
 
   const [values,setValues]=useState({
@@ -18,31 +15,32 @@ export default function Example() {
   const user={email:values.email,password:values.password,loading:values.loading,error:values.error,redirectrefrence:values.redirectrefrence};
  
   
-const navigate = useNavigate();
+// const navigate = useNavigate();
 
 const clicksub=(e)=>{
-e.preventDefault();
+        e.preventDefault();
 
-setValues({...values,error:'',loading:'loading...'});
-signi(user).then(async dataa=>{
- const data=await dataa.json();
- 
+        setValues({...values,error:'',loading:'loading...'});
+        signi(user).then(async dataa=>{
+            const data=await dataa.json();
+            
 
-if(dataa.status!==200){
-  setValues({...values,error:data.message,loading:''});
+            if(dataa.status!==200){
+            setValues({...values,error:data.message,loading:''});
 
-}else if(dataa.status===200){
-  authenticate(data,()=>{
-    setValues({
-      ...values,
-       redirectrefrence:true,
-    });
-  })
+            }else if(dataa.status===200){
+                authenticate(data,()=>{
+                    setValues({
+                    ...values,
+                    redirectrefrence:true,
+                    });
+                })
+            }
+        });
 }
-});
-}
 
-const formsignin=()=>{
+const formsignin = () =>{
+    return(
   <>
      <div className="min-h-screen bg-gray-100 flex flex-col justify-center py-12 sm:px-6 lg:px-8">
     <div className="sm:mx-auto sm:w-full sm:max-w-md">
@@ -54,18 +52,23 @@ const formsignin=()=>{
         <h2 className="mt-6 text-center text-3xl font-extrabold text-gray-900">
             لطفا وارد شوید
         </h2>
-       
+      
     </div>
 
     <div className="mt-8 sm:mx-auto sm:w-full sm:max-w-md">
         <div className="bg-white py-8 px-4 shadow sm:rounded-lg sm:px-10">
             <form className="space-y-6" action="#" method="POST">
                 <div>
-                    <label for="email" className="block text-sm font-medium text-gray-700">
+                    <label  className="block text-sm font-medium text-gray-700">
                         ایمیل
                     </label>
                     <div className="mt-1">
-                         <input id="email" name="email" type="email" autocomplete="email" 
+                         <input id="email" name="email" type="email"  
+                              value={values.email}
+                              onChange={e => {
+                                          const val = e.target.value;
+                                          setValues(prevState => ({...prevState, email: val}));
+                                      }} 
                             className="appearance-none rounded-md relative block w-full px-3 py-2 border border-gray-300 placeholder-gray-500 text-gray-900 focus:outline-none focus:ring-indigo-500 focus:border-indigo-500 focus:z-10 sm:text-sm"
                             placeholder="لطفا ایمیل تون رو وارد کنید" required
                             />
@@ -73,38 +76,43 @@ const formsignin=()=>{
                 </div>
 
                 <div>
-                    <label for="password" class="block text-sm font-medium text-gray-700">
+                    <label  className="block text-sm font-medium text-gray-700">
                         پسورد
                     </label>
                     <div className="mt-1">
-                        <input id="password" name="password" type="password" autocomplete="current-password" required
+                        <input id="password" name="password" type="password"  required
+                           value={values.password}
+                           onChange={e => {
+                                       const val = e.target.value;
+                                       setValues(prevState => ({...prevState, password: val}));
+                                   }} 
                             className="appearance-none rounded-md relative block w-full px-3 py-2 border border-gray-300 placeholder-gray-500 text-gray-900 focus:outline-none focus:ring-indigo-500 focus:border-indigo-500 focus:z-10 sm:text-sm"
                             placeholder="لطفا پسوردتون رو وارد کنید"/>
                     </div>
                 </div>
 
-                <div class="flex items-center justify-between">
+                <div className="flex items-center justify-between">
                
 
                     <div className="text-sm">
-                        <Link href="#" class="font-medium text-blue-600 hover:text-blue-500">
+                        <Link href="#" className="font-medium text-blue-600 hover:text-blue-500">
                             رمزتون رو فراموش کرده اید؟
                         </Link>
                     </div>
                 </div>
 
                 <div>
-                    <button type="submit"
+                    <button type="submit" onClick={clicksub}
                         className="group relative w-full flex justify-center py-2 px-4 border border-transparent text-sm font-medium rounded-md text-white bg-indigo-600 hover:bg-indigo-700 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-indigo-500">
 
                         ورود
                     </button>
                 </div>
-                <div class="flex items-center justify-between">
+                <div className="flex items-center justify-between">
                
 
                <div className="text-sm">
-                   <Link to="/signup" class="font-medium text-blue-600 hover:text-blue-500">
+                   <Link to="/signup" className="font-medium text-blue-600 hover:text-blue-500">
                        ایا قبلا ثبت نام نکرده اید؟؟
                    </Link>
                </div>
@@ -115,11 +123,12 @@ const formsignin=()=>{
     </div>
 </div>
   </>
+  );
 }
     return (
       <>
       {formsignin()}
    
       </>
-    )
+    );
   }

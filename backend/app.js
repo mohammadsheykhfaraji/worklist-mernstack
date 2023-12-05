@@ -26,7 +26,7 @@ const app=express();
 app.use(express.urlencoded({ extended: false }));
 app.use(express.json());
 app.use(cors());
-
+ 
 //routing
 app.use("/api",require('./routers/work.js'));
 app.use("/api",require('./routers/auth.js'));

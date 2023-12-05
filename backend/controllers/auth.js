@@ -40,6 +40,7 @@ exports.signin=async(req,res)=>{
 }
 exports.signup=async(req,res)=>{
    try {
+       
       await User.userValidation(req.body);
       const{fullname,email,password}=req.body;
       const user=await User.findOne({email:email});
@@ -50,6 +51,7 @@ exports.signup=async(req,res)=>{
    return res.status(200).json({fullname, email, password});
 
    } catch (error) {
+   
      return res.status(400).json(error);
    }
 }

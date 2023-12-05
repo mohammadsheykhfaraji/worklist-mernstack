@@ -1,6 +1,8 @@
 const mongoose=require("mongoose");
+const bycrpt=require('bcryptjs');
+const {schema}=require('./secure/userValidation');
 
-const user=new mongoose.Schema({
+const userschema=new mongoose.Schema({
     fullname:{
         type:String,
         required:true,
@@ -52,4 +54,4 @@ userschema.pre("save",function(next){
 
 });
 
-module.exports=mongoose.model('user',user);
+module.exports=mongoose.model('user',userschema);
