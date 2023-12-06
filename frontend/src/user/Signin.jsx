@@ -1,5 +1,5 @@
 import React,{useState} from "react"
-import { Link} from "react-router-dom"
+import { Link,Navigate} from "react-router-dom"
 import { signi,authenticate } from "../auth";
 
 export default function Signin() {
@@ -15,7 +15,6 @@ export default function Signin() {
   const user={email:values.email,password:values.password,loading:values.loading,error:values.error,redirectrefrence:values.redirectrefrence};
  
   
-// const navigate = useNavigate();
 
 const clicksub=(e)=>{
         e.preventDefault();
@@ -37,12 +36,35 @@ const clicksub=(e)=>{
         });
 }
 
+const showerror=()=>( 
+    <div className="bg-red-100 border border-red-400 text-red-700 px-4 py-3 mb-8 rounded relative "  style={{display: user.error ? '' : 'none'}} role="alert">
+        {user.error}
+    </div>
+    
+  );
+  const showloading=()=>( 
+    <div className="bg-blue-100 border border-blue-400 text-blue-700 px-4 py-3 mb-8 rounded relative "  style={{display: user.loading ? '' : 'none'}} role="alert">
+        {user.error}
+    </div>
+    
+  );
+
+
+const redirectuser=()=>{
+    if(user.redirectrefrence){
+    
+      return  <Navigate to="/"  replace/>
+    }
+  }
+
+
+
 const formsignin = () =>{
     return(
   <>
      <div className="min-h-screen bg-gray-100 flex flex-col justify-center py-12 sm:px-6 lg:px-8">
-    <div className="sm:mx-auto sm:w-full sm:max-w-md">
- 
+
+         <div className="sm:mx-auto sm:w-full sm:max-w-md">
                <svg xmlns="http://www.w3.org/2000/svg" width="80" height="80" fill="currentColor"  className="bi bi-person-circle mx-auto w-auto text-blue-900" viewBox="0 0 16 16">
                     <path d="M11 6a3 3 0 1 1-6 0 3 3 0 0 1 6 0z" />
                     <path  d="M0 8a8 8 0 1 1 16 0A8 8 0 0 1 0 8zm8-7a7 7 0 0 0-5.468 11.37C3.242 11.226 4.805 10 8 10s4.757 1.225 5.468 2.37A7 7 0 0 0 8 1z" />
@@ -57,6 +79,8 @@ const formsignin = () =>{
         <div className="bg-white py-8 px-4 shadow sm:rounded-lg sm:px-10">
             <form className="space-y-6" action="#" method="POST">
                 <div>
+                {showerror()}
+               {showloading()}
                     <label  className="block text-sm font-medium text-gray-700">
                         ایمیل
                     </label>
@@ -125,8 +149,8 @@ const formsignin = () =>{
 }
     return (
       <>
-      {formsignin()}
-   
+        {formsignin()}
+        {redirectuser()}
       </>
     );
   }

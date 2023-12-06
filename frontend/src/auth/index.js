@@ -26,17 +26,7 @@ export const signu=async(user)=>{
    return handleApiError(error);
  }
     
-  // return fetch(`${API}/signin`,{
-  //     method: 'POST',
-  //    headers: { 'Content-Type': 'application/json' },
-  //    body: JSON.stringify( user ),
-    
-  //  }).then(async resp=>{
-    
-  //    return await resp;
-  //  }).catch(err=>{
-  //    console.log(err)
-  //  });
+ 
 }
 
 export const authenticate=(data,next)=>{
@@ -59,5 +49,14 @@ export const signout=async (next)=>{
     });
   }
  
+}
+export const isauthenticated=async()=>{
+  if(localStorage.getItem('jwt')){
+    //  const res = await checkAuth();
+      return 0;
+  }else{
+    console.log('no jwt')
+    return  {};
+  }
 }
 

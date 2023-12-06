@@ -13,30 +13,36 @@ export default function Signup() {
         success:false,
       });
      
-      const user={fullname:values.fullname,email:values.email,password:values.password,success:values.success,error:values.error}
+      const user={fullname:values.fullname,email:values.email,password:values.password,confirmpassword:values.confirmpassword,success:values.success,error:values.error}
     
      const clicksub=(e)=>{
       e.preventDefault();
        setValues({...values,error:''});
-      signu(user).then(async response=>{
-        console.log(response);
-      
-       
-        if(response.error){
+       if(user.password===user.confirmpassword){
+        signu(user).then(async response=>{
+            console.log(response);
           
-          setValues({...values,error:response.error,success:false});
-        }else if(response.response){
-          setValues({
-            ...values,
-            fullname:'', 
-            email:'',
-            password:'',
-            confirmpassword:'',
-            error:'',
-            success:true,
+           
+            if(response.error){
+              
+              setValues({...values,error:response.error,success:false});
+            }else if(response.response){
+              setValues({
+                ...values,
+                fullname:'', 
+                email:'',
+                password:'',
+                confirmpassword:'',
+                error:'',
+                success:true,
+              });
+            }
           });
-        }
-      });
+       }else{
+        setValues({...values,error:'کلمه های عبور یکسان نیستند!!',success:false});
+console.log("hlsdl");
+    }
+     
      }
      
        
@@ -60,8 +66,7 @@ export default function Signup() {
         
         <div className="min-h-screen bg-gray-100 flex flex-col justify-center py-12 sm:px-6 lg:px-8">
 
-        {showerror()}
-        {showsuccess()}
+        
 
             <div className="sm:mx-auto sm:w-full sm:max-w-md">
             <svg xmlns="http://www.w3.org/2000/svg" width="80" height="80" fill="currentColor" className="bi bi-person-plus-fill mx-auto w-auto text-blue-900" viewBox="0 0 16 16">
@@ -77,10 +82,12 @@ export default function Signup() {
        
     </div>
 
-    <div className="mt-8 sm:mx-auto sm:w-full sm:max-w-md">
+    <div className="mt-8 sm:mx-auto sm:w-full sm:max-w-md"> 
         <div className="bg-white py-8 px-4 shadow sm:rounded-lg sm:px-10">
             <form className="space-y-6" action="#" method="POST">
             <div>
+            {showerror()}
+         {showsuccess()}
                     <label  className="block text-sm font-medium text-gray-700">
                         نام و نام خانوادگی
                     </label>
