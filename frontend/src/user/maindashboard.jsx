@@ -8,6 +8,7 @@ export default function Maindashboard({selectedItem}) {
         <div>
           <h3 className="text-xl font-semibold mb-2">{selectedItem}</h3>
           <p>This is the content for {selectedItem}.</p>
+         
         </div>
       )}
     </div>

@@ -7,8 +7,8 @@ import {isauthenticated} from './index';
 const Privateroutes=()=>{
   
     const auth=isauthenticated();
-console.log(auth);
-  if (auth && auth.user && auth.true){
+
+  if (auth.true){
     return <Outlet/>; 
   
   } else {

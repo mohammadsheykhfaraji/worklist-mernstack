@@ -3,7 +3,7 @@ import { Link } from "react-router-dom";
 
    
   export default function sidbar({ onItemClick }) {
-    const items = ['پروفایل', 'کارها'];
+      const items = ['پروفایل','کارها']
 
     return (
       <div className="w-1/5 bg-gray-600 p-4 mt-14 h-screen text-white">

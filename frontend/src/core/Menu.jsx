@@ -1,7 +1,9 @@
 import React,{useState} from "react";
 import { Link } from "react-router-dom";
-import { Dialog } from '@headlessui/react'
-import { Bars3Icon, XMarkIcon } from '@heroicons/react/24/outline'
+import { Dialog } from '@headlessui/react';
+import { Bars3Icon, XMarkIcon } from '@heroicons/react/24/outline';
+
+import logo from "../images/favicon-32x32.png";
 
 
 const navigation = [
@@ -26,8 +28,8 @@ export default function Menu() {
           <div className="flex lg:flex-1">
             <Link to={"#"} className="-m-1.5 p-1.5">
               <span className="sr-only">لیست کار ها</span>
-              <img className="h-8 w-auto" src="https://img.icons8.com/external-sbts2018-flat-sbts2018/58/external-check-list-basic-ui-elements-2.3-sbts2018-flat-sbts2018.png" alt="external-check-list-basic-ui-elements-2.3-sbts2018-flat-sbts2018"/>
-              
+              {/* <img className="h-8 w-auto" src="https://img.icons8.com/external-sbts2018-flat-sbts2018/58/external-check-list-basic-ui-elements-2.3-sbts2018-flat-sbts2018.png" alt="external-check-list-basic-ui-elements-2.3-sbts2018-flat-sbts2018"/> */}
+              <img src={logo} alt="logo" className=" w-auto"/>
               
             </Link>
           </div>

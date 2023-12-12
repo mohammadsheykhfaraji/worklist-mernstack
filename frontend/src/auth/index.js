@@ -53,10 +53,12 @@ export const signout=async (next)=>{
 export const isauthenticated=async()=>{
   if(localStorage.getItem('jwt')){
     //  const res = await checkAuth();
-      return 0;
+    const name=JSON.parse(localStorage.getItem('jwt'));
+    console.log(name.token);
+      return true;
   }else{
     console.log('no jwt')
-    return  {};
+    return  false;
   }
 }
 
