@@ -54,4 +54,4 @@ userschema.pre("save",function(next){
 
 });
 
-module.exports=mongoose.model('user',userschema);
+module.exports=mongoose.model('User',userschema);

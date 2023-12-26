@@ -1,4 +1,5 @@
 const User=require('../models/user');
+const Token =require('../models/token');
 const bcrypt=require('bcryptjs');
 const jwt=require("jsonwebtoken");//////////for token create
 // const {expressjwt}=require('express-jwt');////for auth
@@ -24,6 +25,8 @@ exports.signin=async(req,res)=>{
               },
               process.env.JWT_SECRET
           );
+
+          await Token.create({user: user._id,accessToken:token,});
 
           return  res.status(200).json({ token, name:user.fullname});
       } else {

@@ -52,13 +52,24 @@ export const signout=async (next)=>{
 }
 export const isauthenticated=async()=>{
   if(localStorage.getItem('jwt')){
-    //  const res = await checkAuth();
-    const name=JSON.parse(localStorage.getItem('jwt'));
-    console.log(name.token);
-      return true;
+    const check = await checkAuth();
+    console.log(check);
+      return check;
   }else{
     console.log('no jwt')
     return  false;
   }
+}
+export const checkAuth=async()=>{
+  try {
+    const jwt =localStorage.getItem('jwt');
+    const temp= await axios.post(`${API}/checkauth`,jwt ,{
+     headers: { 'Content-Type': 'application/json' }
+   });
+   const response =temp.data;
+   return { response , error:null };
+ } catch (error) {
+   return handleApiError(error);
+ }
 }
 

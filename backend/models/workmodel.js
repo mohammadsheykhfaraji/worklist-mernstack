@@ -10,4 +10,4 @@ title:{
 });
 
 
-module.exports=mongoose.model('work',workschema);
+module.exports=mongoose.model('Work',workschema);
