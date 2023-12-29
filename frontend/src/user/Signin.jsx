@@ -21,7 +21,7 @@ const clicksub=(e)=>{
 
         setValues({...values,error:'',loading:'loading...'});
         signi(user).then(async response=>{
-           console.log(response);
+         
             if(response.error){
             setValues({...values,error:response.error,loading:''});
 

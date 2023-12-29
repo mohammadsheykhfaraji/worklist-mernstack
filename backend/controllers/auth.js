@@ -69,3 +69,20 @@ exports.signout=async(req,res)=>{
       return res.status(400).json(error);
    }
 }
+exports.checkauth=async(req,res)=>{
+    try {
+        const {token}=req.body;
+        const tokenn= await Token.findOne({accessToken:token});
+        if(tokenn){
+          
+            return res.status(200).json({message:"تایید شد"})
+        }else{
+            return res.status(400).json({message:"تایید نشد"})
+        }
+        //  const isEqual = await bcrypt.compare(password, user.password);
+       
+    } catch (error) {
+        return res.status(400).json(error);
+    }
+    
+}
