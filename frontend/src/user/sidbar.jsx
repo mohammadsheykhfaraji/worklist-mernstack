@@ -3,7 +3,16 @@ import { Link } from "react-router-dom";
 
    
   export default function sidbar({ onItemClick }) {
-      const items = ['پروفایل','کارها']
+      // const items = ['پروفایل','کارها']
+      const profile={
+        name:"پروفایل",
+        code:"profile"
+      }
+      const works={
+        name:"کارها",
+        code:"works"
+      }
+    
 
     return (
       <div className="w-1/5 bg-gray-600 p-4 mt-14 h-screen text-white">
@@ -14,16 +23,23 @@ import { Link } from "react-router-dom";
       </div>
       <nav>
         <ul>
-          {items.map((item, index) => (
-            <li key={index} className="mb-2">
+           <li key={profile.code} className="mb-2">
               <Link
                 className=" rounded p-3  "
-                onClick={() => onItemClick(item)}
+                onClick={() => onItemClick(profile)}
               >
-                {item}
+                {profile.name}
               </Link>
             </li>
-          ))}
+            <li key={works.code} className="mb-2">
+              <Link
+                className=" rounded p-3  "
+                onClick={() => onItemClick(works)}
+              >
+                {works.name}
+              </Link>
+            </li>
+        
         </ul>
       </nav>
     </div>

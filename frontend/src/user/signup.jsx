@@ -4,7 +4,7 @@ import { signu } from "../auth";
 
 export default function Signup() {
 
-    const [values,setValues]=useState({
+    const [values,setValues]=useState({ 
         fullname:'',
         email:'',
         password:'',
