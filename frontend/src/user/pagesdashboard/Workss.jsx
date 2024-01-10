@@ -1,5 +1,7 @@
 import React,{ useState } from 'react';
 
+import { addworkk } from '../api/admin/works';
+
 export default function Works() {
 
 
@@ -8,15 +10,27 @@ export default function Works() {
     error:'',
     success:false,
   });
-const work={text:values.text}
+  const work={text:values.text}
   const subclick=(e)=>{
     e.preventDefault();
     setValues({...values,error:''});
+    if(values.text!==''){
+      addworkk(work).then(async res=>{
+        console.log(res);
+      });
+    
+    }
+   
     console.log(values);
     console.log(work);
   }
 
 
+
+
+
+
+  ////////////////////////////////////////////forms
 
   const table=()=>{
     return(
@@ -74,6 +88,10 @@ const work={text:values.text}
   </div>
     );
   }
+
+
+
+  /////////////////////////return
     return (
       <div className='flex flex-col'>
         {addwork()}

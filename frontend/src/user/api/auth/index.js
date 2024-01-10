@@ -1,5 +1,5 @@
 import axios from "axios";
-import { API , handleApiError } from '../config';
+import { API , handleApiError } from '../../../config';
 
 
 export const signu=async(user)=>{
@@ -26,7 +26,6 @@ export const signu=async(user)=>{
    return handleApiError(error);
  }
     
- 
 }
 
 export const authenticate=(data,next)=>{
@@ -54,8 +53,7 @@ export const isauthenticated=async()=>{
   if(localStorage.getItem('jwt')){
     const {response,error} = await checkAuth();
       return {response,error};
-    // const check= await checkAuth();
-    // return check;
+
   }else{
     console.log('no jwt')
     return  false;

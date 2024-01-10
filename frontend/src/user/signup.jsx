@@ -1,6 +1,6 @@
 import React,{ useState } from "react"
 import { Link } from "react-router-dom"
-import { signu } from "../auth";
+import { signu } from "./api/auth";
 
 export default function Signup() {
 

@@ -1,6 +1,6 @@
 import React,{useState} from "react"
 import { Link,Navigate} from "react-router-dom"
-import { signi,authenticate } from "../auth";
+import { signi,authenticate } from "./api/auth";
 
 export default function Signin() {
 

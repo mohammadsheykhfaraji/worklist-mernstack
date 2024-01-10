@@ -1,11 +1,11 @@
-const express = require('express')
+const express = require('express');
 
-const {sayhi}=require('../controllers/work.js')
+const {addwork}=require('../controllers/work.js');
 
 const router=express.Router();
 
 
-router.get('/', sayhi);
+router.post('/addwork', addwork);
 
 
 module.exports=router;

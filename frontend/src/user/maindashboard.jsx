@@ -1,5 +1,5 @@
 import React from 'react';
-import Works from './pagesdashboard/Works'
+import Works from './pagesdashboard/Workss'
 
 export default function Maindashboard({selectedItem}) {
 

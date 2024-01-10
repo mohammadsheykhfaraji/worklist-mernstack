@@ -79,8 +79,7 @@ exports.checkauth=async(req,res)=>{
         }else{
             return res.status(400).json({message:"تایید نشد"})
         }
-        //  const isEqual = await bcrypt.compare(password, user.password);
-       
+        
     } catch (error) {
         return res.status(400).json(error);
     }

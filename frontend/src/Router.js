@@ -1,6 +1,6 @@
 import React from 'react';
 import {BrowserRouter,Routes,Route} from 'react-router-dom';
-import Privateroutes from './auth/privateroute';
+import Privateroutes from './user/api/auth/privateroute';
 
 import Home from './core/Home';
 import Aboutus from './core/Aboutus';
