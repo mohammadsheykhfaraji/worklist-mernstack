@@ -21,8 +21,6 @@ export default function Works() {
     
     }
    
-    console.log(values);
-    console.log(work);
   }
 
 
