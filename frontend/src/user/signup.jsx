@@ -20,9 +20,7 @@ export default function Signup() {
        setValues({...values,error:''});
        if(user.password===user.confirmpassword){
         signu(user).then(async response=>{
-            console.log(response);
-          
-           
+               
             if(response.error){
               
               setValues({...values,error:response.error,success:false});
@@ -40,7 +38,6 @@ export default function Signup() {
           });
        }else{
         setValues({...values,error:'کلمه های عبور یکسان نیستند!!',success:false});
-console.log("hlsdl");
     }
      
      }

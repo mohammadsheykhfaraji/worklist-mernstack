@@ -16,3 +16,20 @@ export const addworkk=async(work)=>{
         return handleApiError(error);
     }
 }
+export const getwork=async()=>{
+    try {
+        const jwt = JSON.parse(localStorage.getItem('jwt'));
+
+        const works ={token:jwt.token}
+        const temp= await axios.post(`${API}/getwork`,works ,{
+            headers: { 'Content-Type': 'application/json' }
+          });
+          const response =temp.data;
+        //   console.log("sjkflskdj");
+        //   console.log(response);
+        //   console.log("sjkflskdj");
+          return { response , error:null };
+    } catch (error) {
+        return handleApiError(error);
+    }
+}
