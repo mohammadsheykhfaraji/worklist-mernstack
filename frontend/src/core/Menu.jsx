@@ -4,8 +4,10 @@ import { Dialog } from '@headlessui/react';
 import { Bars3Icon, XMarkIcon } from '@heroicons/react/24/outline';
 
 import logo from "../images/favicon-32x32.png";
+import { isauthenticated } from "../user/api/auth";
 
-
+const auth=await isauthenticated();
+console.log(auth)
 const navigation = [
    
     { name: 'داشبورد', href: '/user/dashboard'  },
@@ -50,11 +52,20 @@ export default function Menu() {
               </Link>
            ))}
           </div>
-          <div className="hidden lg:flex lg:flex-1 lg:justify-end">
+          {auth.response ? (
+               <div className="hidden lg:flex lg:flex-1 lg:justify-end">
+               <Link to='/logout' className="text-xl font-bold  leading-6 text-gray-900">
+                 خروج
+               </Link>
+             </div>
+          ):(
+            <div className="hidden lg:flex lg:flex-1 lg:justify-end">
             <Link to='/signin' className="text-xl font-bold  leading-6 text-gray-900">
-              ورود 
+               ورود
             </Link>
           </div>
+          )}
+       
         </nav>
         <Dialog as="div" className="lg:hidden" open={mobileMenuOpen} onClose={setMobileMenuOpen}>
           <div className="fixed inset-0 z-50" />
@@ -86,6 +97,16 @@ export default function Menu() {
                     </Link>
                 ))}
                 </div>
+                {auth.response ? (
+                  
+                <div className="py-6">
+                  <Link
+                    to='/logout'
+                    className="-mx-3 block rounded-lg px-3 py-2.5 text-base font-semibold leading-7 text-gray-900 hover:bg-gray-50"
+                  >
+                     خروج
+                  </Link>
+                </div> ):(
                 <div className="py-6">
                   <Link
                     to='/signin'
@@ -94,6 +115,7 @@ export default function Menu() {
                     ورود
                   </Link>
                 </div>
+                )}
               </div>
             </div>
           </Dialog.Panel>

@@ -38,4 +38,20 @@ exports.getwork=async(req,res)=>{
       return res.status(400).json(error)
    }
 }
+exports.delwork=async(req,res)=>{
+   try {
+      const {work,token}=req.body;
+      const tokenn= await Token.findOne({accessToken:token});
+      if(tokenn){
+        console.log(work);
+        const result= await Work.findByIdAndDelete(work);
+      console.log(result);
+         return res.status(200).json({message:"حذف شد"})
+      }else{
+          return res.status(400).json({message:"توکن شما معتبر نیست"})
+      }
+   } catch (error) { 
+      return res.status(400).json(error)
+   }
+}
 

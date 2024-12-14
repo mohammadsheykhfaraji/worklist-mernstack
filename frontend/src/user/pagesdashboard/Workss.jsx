@@ -1,6 +1,6 @@
 import React,{ useState,useEffect } from 'react';
 
-import { addworkk,getwork } from '../api/admin/works';
+import { addworkk,getwork,delwork } from '../api/admin/works';
 
 export default function Works() {
 
@@ -72,6 +72,16 @@ export default function Works() {
     </div>
     
   );
+  const hasdo=(e)=>{
+    
+   console.log(e);
+  }
+  const delet=(e)=>{
+  
+    delwork(e);
+    ///////////////////getwork ro bego test kon
+
+   }
 
   ////////////////////////////////////////////forms
  
@@ -96,13 +106,13 @@ export default function Works() {
            <td className="py-2 px-1 border"> 
              {item.work}
             </td>
-            <td className="py-2 px-1 border" > 
-              <button className="bg-green-500 hover:bg-green-700 text-white font-bold py-1 px-2 rounded">
+            <td className="py-2 px-1 border"  > 
+              <button className="bg-green-500 hover:bg-green-700 text-white font-bold py-1 px-2 rounded" onClick={()=>hasdo(item)}>
                 انجام شد
               </button>
             </td>
             <td className="py-2 px-1 border" > 
-              <button className="bg-red-500 hover:bg-red-700 text-white font-bold py-1 px-2 rounded">
+              <button className="bg-red-500 hover:bg-red-700 text-white font-bold py-1 px-2 rounded" onClick={()=>delet(item)} >
                 حذف
               </button>
             </td>

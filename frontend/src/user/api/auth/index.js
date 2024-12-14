@@ -51,7 +51,7 @@ export const signout=async (next)=>{
 }
 export const isauthenticated=async()=>{
   if(localStorage.getItem('jwt')){
-    const {response,error} = await checkAuth();
+    const {response,error} = await checkAuth(); 
       return {response,error};
 
   }else{

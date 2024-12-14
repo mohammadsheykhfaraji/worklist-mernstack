@@ -17,6 +17,7 @@ const Routers=()=>{
               
                 <Route path='/' exact element={<Home/>}/>
                 <Route path='/signin'  element={<Signin/>}/>
+           
                 <Route path='/signup'  element={<Signup/>}/>
                 <Route path='/aboutus'  element={<Aboutus/>}/>
                 {/* <Route path='*'  element={<notfound/>}/> */}
@@ -25,6 +26,7 @@ const Routers=()=>{
                 <Route element={<Privateroutes/>}>
        
                      <Route path="/user/dashboard" element={<Userdashboard />} />
+                     <Route path='/logout'  element={<Home/>}/>
                 </Route>
                 
          

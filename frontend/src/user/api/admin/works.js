@@ -25,9 +25,22 @@ export const getwork=async()=>{
             headers: { 'Content-Type': 'application/json' }
           });
           const response =temp.data;
-        //   console.log("sjkflskdj");
-        //   console.log(response);
-        //   console.log("sjkflskdj");
+
+          return { response , error:null };
+    } catch (error) {
+        return handleApiError(error);
+    }
+}
+export const delwork=async(work)=>{
+    try {
+        const jwt = JSON.parse(localStorage.getItem('jwt'));
+     
+        const works ={work:work._id,token:jwt.token}
+
+        const temp= await axios.post(`${API}/delwork`,works ,{
+            headers: { 'Content-Type': 'application/json' }
+          });
+          const response =temp.data;
           return { response , error:null };
     } catch (error) {
         return handleApiError(error);
